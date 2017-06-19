@@ -33,7 +33,7 @@ myCollatz :: Int->[Int]
 myCollatz 1 = [1]
 myCollatz x
   | even x  =  x : myCollatz (x `div` 2)
-  | otherwise = x : myCollatz (x * 3 + 1)
+  | otherwise = x : myCollatz (x * 3 + 1) 
 
 num = length (filter isLong (map myCollatz [1..100]))
           where isLong xs = length xs > 15
@@ -49,3 +49,27 @@ myElem y = foldr (\x acc -> acc || x == y) False
 
 myReverse :: [a]->[a]
 myReverse = foldl (flip (:)) []
+
+
+chain :: Integer -> [Integer]
+chain 1 = [1]
+chain n
+    | even n = n:chain (n `div` 2)
+    | odd n = n:chain (n*3 + 1)
+
+addThree :: Int -> Int -> Int -> Int
+addThree = \x -> \y -> \z -> x + y + z
+
+sum' :: (Num a) => [a] -> a
+sum' xs = foldl (\acc x -> acc + x) 0 xs
+
+map' :: (a -> b) -> [a] -> [b]
+map' f = foldr (\x acc -> f x: acc) []
+
+sqrtSums :: Int
+sqrtSums = length (takeWhile (<1000) (scanl1 (+) (map sqrt [1..]))) + 1
+
+fn = ceiling . negate .tan . cos . max 50
+
+
+oddSquareSum = length . takeWhile (<10000) . filter odd 
