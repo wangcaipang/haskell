@@ -20,3 +20,4 @@ getNat :: L.ByteString -> Maybe (Int, L.ByteString)
 
 getBytes :: Int -> L.ByteString -> Maybe (L.ByteString, L.ByteString)
 
+(>>?)
